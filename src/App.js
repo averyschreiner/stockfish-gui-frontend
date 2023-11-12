@@ -14,11 +14,13 @@ export default function App() {
   const game = useMemo(() => new Chess(), [])
   const [elo, setElo] = useState(1320)
   const [fen, setFen] = useState(game.fen())
-  const [moves, setMoves] = useState([{}])
+  const [moves] = useState([{}])
   const [playingAsWhite, setPlayingAsWhite] = useState(true)
   const [boardOrientation, setBoardOrientation] = useState('white')
   const [started, setStarted] = useState(false)
   const [thinking, setThinking] = useState(false)
+  const backendURL = 'https://stockfish-gui.azurewebsites.net'
+  // const backendURL = 'http://localhost:3001'
 
   const handleSliderChange = (event) => {
     setElo(event.target.value)
@@ -33,7 +35,7 @@ export default function App() {
     setStarted(true)
     if (boardOrientation === 'black') {
       setThinking(true)
-      axios.post('http://localhost:3001/bestmove', {fen: game.fen(), elo: elo})
+      axios.post(`${backendURL}/bestmove`, {fen: game.fen(), elo: elo})
       .then (response => {
         const bestmove = response.data.bestmove
         makeMove({from: bestmove.substring(0,2), to: bestmove.substring(2,4), promotion: "q"})
@@ -97,7 +99,7 @@ export default function App() {
         setStarted(true)
         if (game.turn() !== boardOrientation[0]) {
           setThinking(true)
-          axios.post('http://localhost:3001/bestmove', {fen: move.after, elo: elo})
+          axios.post(`${backendURL}/bestmove`, {fen: move.after, elo: elo})
           .then (response => {
             const bestmove = response.data.bestmove
             makeMove({from: bestmove.substring(0,2), to: bestmove.substring(2,4), promotion: "q"})
