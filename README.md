@@ -1,0 +1,1 @@
+# stockfish-gui-frontend
