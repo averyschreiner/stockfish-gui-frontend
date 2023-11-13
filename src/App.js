@@ -19,7 +19,7 @@ export default function App() {
   const [boardOrientation, setBoardOrientation] = useState('white')
   const [started, setStarted] = useState(false)
   const [thinking, setThinking] = useState(false)
-  const backendURL = 'https://stockfish-gui.azurewebsites.net'
+  const backendURL = 'https://stockfish-gui-backend.azurewebsites.net'
   // const backendURL = 'http://localhost:3001'
 
   const handleSliderChange = (event) => {
