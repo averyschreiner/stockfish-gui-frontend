@@ -45,8 +45,7 @@ export default function App() {
   }
 
   const reviewGame = () => {
-    // take to review page with game pgn
-    window.location.reload()
+
   }
 
   const switchSides = () => {
@@ -138,7 +137,7 @@ export default function App() {
 
   return (
     <Grid container spacing={1} style={{ paddingTop: '20px', fontFamily: 'Roboto'}} >
-      <PostGameModal open={gameOver} text={gameOverText} playAgain={playAgain} />
+      <PostGameModal open={gameOver} text={gameOverText} playAgain={playAgain} reviewGame={reviewGame} />
       <Grid xs={6} style={{ paddingLeft: '30px' }}>
         <Stack spacing={2} style={{ maxWidth: 'calc(100vh - 100px)' }}>
           { thinking && (
