@@ -35,7 +35,7 @@ export default function App() {
     setStarted(true)
     if (boardOrientation === 'black') {
       setThinking(true)
-      axios.post(`${backendURL}/bestmove`, {fen: game.fen(), elo: elo})
+      axios.get(`${backendURL}/bestmove?fen=${game.fen()}&elo=${elo}`)
       .then (response => {
         const bestmove = response.data.bestmove
         makeMove({from: bestmove.substring(0,2), to: bestmove.substring(2,4), promotion: "q"})
@@ -99,7 +99,7 @@ export default function App() {
         setStarted(true)
         if (game.turn() !== boardOrientation[0]) {
           setThinking(true)
-          axios.post(`${backendURL}/bestmove`, {fen: move.after, elo: elo})
+          axios.get(`${backendURL}/bestmove?fen=${move.after}&elo=${elo}`)
           .then (response => {
             const bestmove = response.data.bestmove
             makeMove({from: bestmove.substring(0,2), to: bestmove.substring(2,4), promotion: "q"})
