@@ -230,23 +230,33 @@ export default function Review() {
         <MoveTable moves={moves} theCurrentMove={theCurrentMove} height={"calc(100vh - 170px"} />
         <Stack width={'100%'} border={'1px solid lightgrey'} divider={<Divider flexItem />} borderRadius={'5px'}>
           <Stack width={'100%'} direction={'row'} divider={<Divider orientation="vertical" flexItem />}>
-            <Button fullWidth onClick={handleUndo}>
-              <KeyboardArrowLeft />
-            </Button>
-            <Button fullWidth onClick={handleRedo}>
-              <KeyboardArrowRight />
-            </Button>
+            <Tooltip title="Undo move" placement='top' enterDelay={500} arrow>
+              <Button fullWidth onClick={handleUndo}>
+                <KeyboardArrowLeft />
+              </Button>
+            </Tooltip>
+            <Tooltip title="Redo move" placement='top' enterDelay={500} arrow>
+              <Button fullWidth onClick={handleRedo}>
+                <KeyboardArrowRight />
+              </Button>
+            </Tooltip>
           </Stack>
           <Stack width={'100%'} direction={'row'} divider={<Divider orientation="vertical" flexItem />}>
-            <Button fullWidth onClick={switchSides}>
-              <Cached />
-            </Button>
-            <Button fullWidth onClick={reset}>
-              <Refresh />
-            </Button>
-            <Button fullWidth onClick={() => setOpenDialog(true)}>
-              <Upload />
-            </Button>
+            <Tooltip title="Switch board" placement='top' enterDelay={500} arrow>
+              <Button fullWidth onClick={switchSides}>
+                <Cached />
+              </Button>
+            </Tooltip>
+            <Tooltip title="Reset board" placement='top' enterDelay={500} arrow>
+              <Button fullWidth onClick={reset}>
+                <Refresh />
+              </Button>
+            </Tooltip>
+            <Tooltip title="Upload game" placement='top' enterDelay={500} arrow>
+              <Button fullWidth onClick={() => setOpenDialog(true)}>
+                <Upload />
+              </Button>
+            </Tooltip>
           </Stack>
         </Stack>
       </Grid>
