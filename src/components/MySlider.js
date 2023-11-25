@@ -1,7 +1,7 @@
 import { Slider } from '@mui/material'
 import React from 'react'
 
-export default function MySlider({ onSliderChange, defaultValue, step, min, max}) {
+export default function MySlider({ onSliderChange, defaultValue, step, min, max, disabled }) {
     const handleSliderChange = (value) => {
         onSliderChange(value)
     }
@@ -15,6 +15,7 @@ export default function MySlider({ onSliderChange, defaultValue, step, min, max}
             step={step}
             min={min}
             max={max}
+            disabled={disabled}
         />
     )
 }

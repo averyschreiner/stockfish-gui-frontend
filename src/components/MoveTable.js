@@ -1,10 +1,19 @@
 import React from 'react'
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from '@mui/material'
 
-export default function MySlider({ moves }) {
+export default function MySlider({ moves, height, theCurrentMove }) {
+
+    function whiteMove(index) {
+        return moves[index]
+    }
+    
+    function blackMove(index) {
+        return moves[index+1]
+    }
+
     return (
-        <div style={{ height: 'calc(100vh - 80px)', overflowY: 'auto', minWidth: '100%'}}>
-            <TableContainer component={Paper} elevation={0} >
+        <div style={{ height: height, overflowY: 'auto', minWidth: '100%'}}>
+            <TableContainer component={Paper} >
                 <Table style={{border: '1.5px solid lightgrey'}}>
                     <TableHead>
                         <TableRow>
@@ -13,16 +22,25 @@ export default function MySlider({ moves }) {
                             <TableCell>Black</TableCell>
                         </TableRow>
                     </TableHead>
-                    <TableBody id="table-container" >
-                        {moves.map((move, index) => (
-                            move.whiteMove !== undefined && (
-                                <TableRow key={index} style={{ backgroundColor: index % 2 === 0 ? '#eeeeee' : 'white' }}>
-                                    <TableCell>{index + 1}.</TableCell>
-                                    <TableCell>{move.whiteMove}</TableCell>
-                                    <TableCell>{move.blackMove}</TableCell>
+                    <TableBody>
+                        {moves.map((_, index) => (
+                            index % 2 === 0 && (
+                                <TableRow key={index} style={{ backgroundColor: index % 4 === 0 ? '#eeeeee' : 'white' }}>
+                                    <TableCell>{Math.ceil(index / 2) + 1}.</TableCell>
+                                    <TableCell>
+                                        <div style={index <= theCurrentMove ? { textDecoration: 'underline' } : null}>
+                                            {whiteMove(index)}
+                                        </div>
+                                    </TableCell>
+                                    <TableCell>
+                                        <div style={index + 1 <= theCurrentMove ? { textDecoration: 'underline' } : null}>
+                                            {blackMove(index)}
+                                        </div>
+                                    </TableCell>
                                 </TableRow>
                             )
                         ))}
+
                     </TableBody>
                 </Table>
             </TableContainer>
