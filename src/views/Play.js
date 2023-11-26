@@ -22,8 +22,9 @@ export default function Play() {
   const [thinking, setThinking] = useState(false)
   const [gameOver, setGameOver] = useState(false)
   const [gameOverText, setGameOverText] = useState("")
-  const backendURL = 'https://stockfish-gui-backend.azurewebsites.net'
+  // const backendURL = 'https://stockfish-gui-backend.azurewebsites.net'
   // const backendURL = 'http://localhost:3001'
+  const backendURL = ""
 
   function handleEloChange(event) {
     setElo(event.target.value)

@@ -24,8 +24,9 @@ export default function Review() {
   const [pgn, setPgn] = useState("")
   const [theCurrentMove, setTheCurrentMove] = useState(0)
   const urlParams = new URLSearchParams(window.location.search)
-  const backendURL = 'https://stockfish-gui-backend.azurewebsites.net'
+  // const backendURL = 'https://stockfish-gui-backend.azurewebsites.net'
   // const backendURL = 'http://localhost:3001'
+  const backendURL = ""
 
   if (urlParams.get('pgn') && moves.length <= 1) {
     setPgn(urlParams.get('pgn'))
