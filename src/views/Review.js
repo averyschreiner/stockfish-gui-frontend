@@ -183,7 +183,7 @@ export default function Review() {
   }
 
   return (
-    <Grid container columns={24} spacing={0} style={{ paddingTop: '10px', fontFamily: 'Roboto'}} >
+    <Grid container spacing={1} style={{ paddingTop: '10px', fontFamily: 'Roboto'}} >
       <Dialog open={openDialog} fullWidth maxWidth='sm'>
         <DialogTitle>Enter PGN</DialogTitle>
         <DialogContent>
@@ -196,7 +196,7 @@ export default function Review() {
           </Stack>
         </DialogActions>
       </Dialog>
-      <Grid item xs={7} paddingTop={'10px'}>
+      <Grid item xs paddingTop={'10px'}>
         <Container>
           <Stack spacing={1}>
             <BestMovesList bestLines={bestLines} thinking={thinking} multiPV={multiPV} />
@@ -217,18 +217,18 @@ export default function Review() {
           </Stack>
         </Container>
       </Grid>
-      <Grid item xs={10} paddingTop={'10px'} >
-        <Container style={{ maxWidth: 'calc(100vh - 40px)' }}>
+      <Grid item xs paddingTop={'10px'} >
+        <Container style={{ width: 'calc(100vh - 75px)', padding: 0 }}>
           <Chessboard id="board" customArrows={currentArrow} position={fen} onPieceDrop={onDrop} animationDuration={500} boardOrientation={boardOrientation}/>
         </Container>
       </Grid>
-      <Grid item xs={1} paddingRight={'20px'} paddingTop={'10px'}>
-        <Box border={'1px solid black'} height={'100%'} style={{backgroundColor: 'black', position: 'relative'}}>
-          <div style={{position: 'absolute', height: `${whiteWinPercentage}%`, backgroundColor: 'white', width: '100%', [boardOrientation === 'black' ? 'top' : 'bottom']: '0', transition: 'height 1s ease'}} />
+      <Grid item paddingTop={'10px'} paddingRight={'26px'}>
+        <Box border={'1px solid black'} height={'100%'} width={'2000%'} style={{backgroundColor: 'black', position: 'relative'}}>
+          <div style={{ position: 'absolute', height: `${whiteWinPercentage}%`, backgroundColor: 'white', width: '100%', [boardOrientation === 'black' ? 'top' : 'bottom']: '0', transition: 'height 1s ease'}} />
         </Box>
       </Grid>
-      <Grid item xs={6} paddingRight={'20px'} paddingTop={'10px'}>
-        <MoveTable moves={moves} theCurrentMove={theCurrentMove} height={"calc(100vh - 170px"} />
+      <Grid item xs paddingRight={'5px'} paddingTop={'10px'} paddingLeft={0}>
+        <MoveTable moves={moves} theCurrentMove={theCurrentMove} height={"calc(100vh - 148px"} />
         <Stack width={'100%'} border={'1px solid lightgrey'} divider={<Divider flexItem />} borderRadius={'5px'}>
           <Stack width={'100%'} direction={'row'} divider={<Divider orientation="vertical" flexItem />}>
             <Tooltip title="Undo move" placement='top' enterDelay={500} arrow>
