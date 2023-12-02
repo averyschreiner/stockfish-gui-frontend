@@ -13,7 +13,7 @@ export default function Review() {
   const [game] = useState(new Chess())
   const [whiteWinPercentage, setWhiteWinPercentage] = useState(50)
   const [multiPV, setMultiPV] = useState(3)
-  const [depth, setDepth] = useState(15)
+  const [depth, setDepth] = useState(12)
   const [fen, setFen] = useState(game.fen())
   const [moves, setMoves] = useState([])
   const [boardOrientation, setBoardOrientation] = useState('white')
@@ -24,7 +24,6 @@ export default function Review() {
   const [pgn, setPgn] = useState("")
   const [theCurrentMove, setTheCurrentMove] = useState(0)
   const urlParams = new URLSearchParams(window.location.search)
-  // const backendURL = 'https://stockfish-gui-backend.azurewebsites.net'
   // const backendURL = 'http://localhost:3001'
   const backendURL = ""
 
@@ -197,7 +196,7 @@ export default function Review() {
         </DialogActions>
       </Dialog>
       <Grid item xs paddingTop={'10px'}>
-        <Container>
+        <Container style={{ height: 'calc(100vh - 75px)'}}>
           <Stack spacing={1}>
             <BestMovesList bestLines={bestLines} thinking={thinking} multiPV={multiPV} />
             <Stack spacing={4}>
@@ -217,7 +216,7 @@ export default function Review() {
           </Stack>
         </Container>
       </Grid>
-      <Grid item xs paddingTop={'10px'} >
+      <Grid item auto paddingTop={'10px'} style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }} >
         <Container style={{ width: 'calc(100vh - 75px)', padding: 0 }}>
           <Chessboard id="board" customArrows={currentArrow} position={fen} onPieceDrop={onDrop} animationDuration={500} boardOrientation={boardOrientation}/>
         </Container>
@@ -227,7 +226,7 @@ export default function Review() {
           <div style={{ position: 'absolute', height: `${whiteWinPercentage}%`, backgroundColor: 'white', width: '100%', [boardOrientation === 'black' ? 'top' : 'bottom']: '0', transition: 'height 1s ease'}} />
         </Box>
       </Grid>
-      <Grid item xs paddingRight={'5px'} paddingTop={'10px'} paddingLeft={0}>
+      <Grid item xs paddingRight={'5px'} paddingTop={'10px'} paddingLeft={0} style={{ height: 'calc(100vh - 75px)'}}>
         <MoveTable moves={moves} theCurrentMove={theCurrentMove} height={"calc(100vh - 148px"} />
         <Stack width={'100%'} border={'1px solid lightgrey'} divider={<Divider flexItem />} borderRadius={'5px'}>
           <Stack width={'100%'} direction={'row'} divider={<Divider orientation="vertical" flexItem />}>

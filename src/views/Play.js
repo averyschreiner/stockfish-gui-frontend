@@ -22,7 +22,6 @@ export default function Play() {
   const [thinking, setThinking] = useState(false)
   const [gameOver, setGameOver] = useState(false)
   const [gameOverText, setGameOverText] = useState("")
-  // const backendURL = 'https://stockfish-gui-backend.azurewebsites.net'
   // const backendURL = 'http://localhost:3001'
   const backendURL = ""
 
@@ -123,11 +122,11 @@ export default function Play() {
   }
 
   return (
-    <Grid container columns={24} spacing={1} style={{ paddingTop: '10px', fontFamily: 'Roboto'}} >
+    <Grid container columns={24} spacing={1} style={{ paddingTop: '10px', fontFamily: 'Roboto', fontSize: '1.5vw'}} >
       <PostGameModal open={gameOver} text={gameOverText} playAgain={playAgain} pgn={game.pgn()} />
-      <Grid item xs={7} paddingLeft={'30px'} paddingTop={'30px'}>
+      <Grid item xs paddingLeft={'30px'} paddingTop={'30px'}>
         <Container>
-          <Stack spacing={5}>
+          <Stack height='calc(100vh - 90px)' spacing={5} justifyContent={'space-around'}>
             <Stack container direction={"row"} alignItems={"center"} spacing={1}>
               <h2><u>Elo</u></h2>
               <Tooltip placement={'top'} title={"Determines Stockfish's playing strength. Higher elo makes it more challenging, while lower elo make it easier."}><Info /></Tooltip>
@@ -157,7 +156,7 @@ export default function Play() {
           </Stack>
         </Container>
       </Grid>
-      <Grid item xs={10}>
+      <Grid item auto style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
         <Container style={{ maxWidth: 'calc(100vh - 40px)' }}>
           <Stack spacing={1}>
             { thinking && (
@@ -166,11 +165,13 @@ export default function Play() {
             { !thinking && (
               <LinearProgress sx={{'& .MuiLinearProgress-bar': {backgroundColor: 'white'}}} variant="determinate" value={100} />
             )}
-            <Chessboard id="board" position={fen} onPieceDrop={onDrop} animationDuration={500} boardOrientation={boardOrientation}/>
+            <Container style={{ width: 'calc(100vh - 90px)', padding: 0 }}>
+              <Chessboard id="board" position={fen} onPieceDrop={onDrop} animationDuration={500} boardOrientation={boardOrientation}/>
+            </Container>
           </Stack>
         </Container>
       </Grid>
-      <Grid item xs={7} paddingRight={'20px'} paddingTop={'15px'}>
+      <Grid item xs paddingRight={'20px'} paddingTop={'15px'}>
         <MoveTable moves={moves} height={"calc(100vh - 96px)"} theCurrentMove={-1} />
       </Grid>
     </Grid>

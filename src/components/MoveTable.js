@@ -25,7 +25,7 @@ export default function MySlider({ moves, height, theCurrentMove }) {
                     <TableBody>
                         {moves.map((_, index) => (
                             index % 2 === 0 && (
-                                <TableRow key={index} style={{ backgroundColor: index % 4 === 0 ? '#eeeeee' : 'white' }}>
+                                <TableRow key={index} style={{ backgroundColor: index % 4 === 0 ? '#eeeeee' : 'white'}}>
                                     <TableCell>{Math.ceil(index / 2) + 1}.</TableCell>
                                     <TableCell>
                                         <div style={index <= theCurrentMove ? { textDecoration: 'underline' } : null}>
