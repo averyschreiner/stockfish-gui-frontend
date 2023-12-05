@@ -63,9 +63,6 @@ export default function Play() {
   }  
 
   function addMove(move) {
-    // let movesCopy = [...moves]
-    // movesCopy.push(move)
-    // setMoves(movesCopy)
     moves.push(move)
   }
 
@@ -127,7 +124,7 @@ export default function Play() {
       <Grid item xs paddingLeft={'30px'} paddingTop={'30px'}>
         <Container>
           <Stack height='calc(100vh - 90px)' spacing={5} justifyContent={'space-around'}>
-            <Stack container direction={"row"} alignItems={"center"} spacing={1}>
+            <Stack direction={"row"} alignItems={"center"} spacing={1}>
               <h2><u>Elo</u></h2>
               <Tooltip placement={'top'} title={"Determines Stockfish's playing strength. Higher elo makes it more challenging, while lower elo make it easier."}><Info /></Tooltip>
             </Stack>
@@ -156,7 +153,7 @@ export default function Play() {
           </Stack>
         </Container>
       </Grid>
-      <Grid item auto style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+      <Grid item style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
         <Container style={{ maxWidth: 'calc(100vh - 40px)' }}>
           <Stack spacing={1}>
             { thinking && (

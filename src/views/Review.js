@@ -96,6 +96,23 @@ export default function Review() {
     catch {}
   }, [bestLines, game])
 
+  function buildPGN(moves) {
+    let pgn = ""
+
+    for (let i = 0; i < moves.length; i++) {
+      if (i % 2 === 0) {
+        pgn += `${(i/2)+1}. ${moves[i]} ${moves[i+1] === undefined ? "" : moves[i+1]}\n`
+      }
+    }
+
+    return pgn
+  }
+
+  function jumpTo(moveIndex) {
+    game.loadPgn(buildPGN(moves.slice(0, moveIndex+1)))
+    setFen(game.fen())
+    setTheCurrentMove(moveIndex)
+  }
 
   function handleUndo() {
     setTheCurrentMove(Math.max(-1, theCurrentMove - 1))
@@ -216,7 +233,7 @@ export default function Review() {
           </Stack>
         </Container>
       </Grid>
-      <Grid item auto paddingTop={'10px'} style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }} >
+      <Grid item paddingTop={'10px'} style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }} >
         <Container style={{ width: 'calc(100vh - 75px)', padding: 0 }}>
           <Chessboard id="board" customArrows={currentArrow} position={fen} onPieceDrop={onDrop} animationDuration={500} boardOrientation={boardOrientation}/>
         </Container>
@@ -227,7 +244,7 @@ export default function Review() {
         </Box>
       </Grid>
       <Grid item xs paddingRight={'5px'} paddingTop={'10px'} paddingLeft={0} style={{ height: 'calc(100vh - 75px)'}}>
-        <MoveTable moves={moves} theCurrentMove={theCurrentMove} height={"calc(100vh - 148px"} />
+        <MoveTable outlineOnHover jumpTo={jumpTo} moves={moves} theCurrentMove={theCurrentMove} height={"calc(100vh - 148px"} />
         <Stack width={'100%'} border={'1px solid lightgrey'} divider={<Divider flexItem />} borderRadius={'5px'}>
           <Stack width={'100%'} direction={'row'} divider={<Divider orientation="vertical" flexItem />}>
             <Tooltip title="Undo move" placement='top' enterDelay={500} arrow>
