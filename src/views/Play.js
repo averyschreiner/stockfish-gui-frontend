@@ -169,7 +169,7 @@ export default function Play() {
         </Container>
       </Grid>
       <Grid item xs paddingRight={'20px'} paddingTop={'15px'}>
-        <MoveTable moves={moves} height={"calc(100vh - 96px)"} theCurrentMove={-1} />
+        <MoveTable moves={moves} height={"calc(100vh - 80px)"} theCurrentMove={-1} />
       </Grid>
     </Grid>
   )
